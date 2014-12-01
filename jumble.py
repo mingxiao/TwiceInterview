@@ -41,10 +41,10 @@ fid = open(wordFilePath, 'rb')
 for line in fid:
     valid_words.add(line.strip())
 
-word = raw_input('Enter a word, or enter empty string to quit: ').strip()
+word = raw_input('Enter a word, or enter empty string to quit: ').strip().lower()
 while len(word) > 0:
     print 'Here are the valid jumble words: ',
     for s in jumble_answer(word, valid_words):
         print s,',',
     print
-    word = raw_input('Enter a word, or enter empty string to quit: ').strip()
+    word = raw_input('Enter a word, or enter empty string to quit: ').strip().lower()
