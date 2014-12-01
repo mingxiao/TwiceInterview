@@ -1,0 +1,31 @@
+import os
+
+def permute(s, valid_words=set([]),  ans_set = set([])):
+    if len(s) <= 1:
+        return [s]
+    char = s[0]
+    permutations = permute(s[1:])
+    print permutations
+    results = []
+    for perm in permutations:
+        for i in range(len(perm)+1):
+            newPerm = perm[:i] + char + perm[i:]
+            results.append(newPerm)
+            if newPerm in valid_words:
+                ans_set.add(newPerm)
+    return results
+
+wordFilePath = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'corncob_lowercase.txt')
+
+valid_words = set([])
+fid = open(wordFilePath, 'rb')
+for line in fid:
+    valid_words.add(line.strip())
+
+print 'do' in valid_words
+s = set([])
+print permute('dog', valid_words, s)
+print s
+
+# this issue is that when we permute we do not get 'do' as a candidate
+# b/c our algorithm is based on the ordering of the characters.
